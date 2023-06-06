@@ -1,0 +1,13 @@
+/* tailwind.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS styles */
+@layer components {
+  .section-btn {
+    @apply p-2 my-2 bg-gray-300 inline-block rounded cursor-pointer;
+  }
+}
+
+/*  END: custome */

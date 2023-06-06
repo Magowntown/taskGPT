@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task GPT | AI Task Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="p-6 flex justify-between">
+    <h1 class="text-2xl font-bold">TaskGPT</h1>
+    <button class="p-2 bg-yellow-300 rounded flex" id="reset-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6 mr-2 font-bold">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+      </svg>
+      <span class="font-bold">Start over</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- start: first section -->
+    <div class="p-6 bg-gray-200">
+      <p>
+        Hello! I am TaskGPT, an AI-powered task manager. I can help you manage your tasks and how you get things done!
+        Please select an option below or type in the box to get started.
+      </p>
+      <div class="section-btn" id="pomo-btn">
+        <p>Pomodoro technique</p>
+      </div>
+
+      <div class="section-btn" id="matrix-btn">
+        <p>Matrix</p>
+      </div>
+
+      <div class="section-btn" id="ztd-btn">
+        <p>Zen to Done</p>
+      </div>
+      <div class="section-btn" id="gtd-btn">
+        <p>Get things Done</p>
+      </div>
+
+      <div>
+        <select name="task-type" id="task-type">
+          <option value="ZTD">ZTD</option>
+          <option value="Pomodoro">Pomodoro</option>
+          <option value="Matrix">Matrix</option>
+        </select>
+      </div>
+    </div>
+    <!-- end: first section -->
+
+    <!-- start: input box for prompts-->
+    <div id="task-prompt-result"></div>
+    <div class="p-6">
+      <textarea id="task-prompt" cols="30" rows="10" placeholder="type or use the mic, press enter to submit"
+        class="p-2 w-full border-2 rounded outline-none"></textarea>
+    </div>
+    <!-- end: input box for prompts -->
+  </main>
+
+  <footer class="text-center text-gray-300">
+    <p>TaskGPT 2023. All rights reserved</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
