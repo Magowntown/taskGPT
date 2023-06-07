@@ -3,6 +3,7 @@ const taskType = document.getElementById("task-type");
 const resetBtnEl = document.getElementById("reset-btn");
 const taskBtnElms = document.getElementsByClassName("task-btn");
 
+
 // define variable
 const taskPromptTextEl = document.getElementById("task-prompt");
 const taskPromptResultEl = document.getElementById("task-prompt-result");
@@ -28,6 +29,7 @@ function resetPage() {
   taskPromptTextEl.value = "";
 }
 
+
 // ==================================================================================
 // Update Result
 
@@ -40,6 +42,7 @@ function updateResult(result) {
     }
   } else {
     generateTaskOption(result);
+
   }
 }
 
