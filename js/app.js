@@ -1,6 +1,8 @@
+// Variables
 const taskType = document.getElementById("task-type");
 const resetBtnEl = document.getElementById("reset-btn");
-const taskBtnElm = document.getElementsByClassName("task-btn");
+const taskBtnElms = document.getElementsByClassName("task-btn");
+
 
 // define variable
 const taskPromptTextEl = document.getElementById("task-prompt");
@@ -11,13 +13,13 @@ const taskPromptResultEl = document.getElementById("task-prompt-result");
 
 // when I click the :start over: btn
 resetBtnEl.addEventListener("click", () => resetPage());
-taskType.addEventListener("change", () =>
-  generateTaskOption(event.target.value)
-);
-for (let elm of taskBtnElm) {
-  elm.addEventListener("click", () => generateTaskOption(elm.innerText));
+taskType.addEventListener("change", () => updateResult(event.target.value));
+for (let elm of taskBtnElms) {
+  elm.addEventListener("click", () => updateResult(event.target.innerText));
 }
-taskPromptTextEl.addEventListener("keydown", () => updateResults());
+taskPromptTextEl.addEventListener("keydown", () =>
+  updateResult(event.target.value)
+);
 
 // ResetPage function
 function resetPage() {
@@ -27,26 +29,20 @@ function resetPage() {
   taskPromptTextEl.value = "";
 }
 
-// ====================================================================================
-// Text-Input
 
-// Text prompt
-function textBoxResult() {
-  updateResults();
-}
+// ==================================================================================
+// Update Result
 
-// ====================================================================================
-// Update Results
+function updateResult(result) {
+  if (event.type === "keydown") {
+    // User input
+    if (event.key === "Enter") {
+      generateUserOption(result);
+      taskPromptTextEl.value = "";
+    }
+  } else {
+    generateTaskOption(result);
 
-function updateResults() {
-  if (event.key === "Enter") {
-    const userInput = taskPromptTextEl.value;
-    //@TODO: 1. make this show in the web view
-    console.log(userInput);
-    //    set a value
-    taskPromptTextEl.value = "";
-
-    generateUserOption(userInput);
   }
 }
 
