@@ -1,12 +1,11 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task GPT | AI Task Manager</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -29,26 +28,28 @@
         Hello! I am TaskGPT, an AI-powered task manager. I can help you manage your tasks and how you get things done!
         Please select an option below or type in the box to get started.
       </p>
-      <div class="section-btn" id="pomo-btn">
-        <p>Pomodoro technique</p>
+      <div class="section-btn task-btn" id="pomo-btn">
+        <p>Pomodoro</p>
       </div>
 
-      <div class="section-btn" id="matrix-btn">
+      <div class="section-btn task-btn" id="matrix-btn">
         <p>Matrix</p>
       </div>
 
-      <div class="section-btn" id="ztd-btn">
+      <div class="section-btn task-btn" id="ztd-btn">
         <p>Zen to Done</p>
       </div>
-      <div class="section-btn" id="gtd-btn">
+      <div class="section-btn task-btn" id="gtd-btn">
         <p>Get things Done</p>
       </div>
 
       <div>
         <select name="task-type" id="task-type">
+          <option selected disabled hidden value=""></option>
           <option value="ZTD">ZTD</option>
           <option value="Pomodoro">Pomodoro</option>
           <option value="Matrix">Matrix</option>
+          <option value="GTD">GTD</option>
         </select>
       </div>
     </div>

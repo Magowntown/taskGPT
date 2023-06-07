@@ -1,10 +1,7 @@
 // Variables
-const pomoBtn = document.getElementById("pomo-btn"); // object
-const matrixBtn = document.getElementById("matrix-btn"); //object
-const ztdBtn = document.getElementById("ztd-btn"); //object
-const gtdBtn = document.getElementById("gtd-btn"); //object
 const taskType = document.getElementById("task-type");
 const resetBtnEl = document.getElementById("reset-btn");
+const taskBtnElms = document.getElementsByClassName("task-btn");
 
 // define variable
 const taskPromptTextEl = document.getElementById("task-prompt");
@@ -15,6 +12,13 @@ const taskPromptResultEl = document.getElementById("task-prompt-result");
 
 // when I click the :start over: btn
 resetBtnEl.addEventListener("click", () => resetPage());
+taskType.addEventListener("change", () => updateResult(event.target.value));
+for (let elm of taskBtnElms) {
+  elm.addEventListener("click", () => updateResult(event.target.innerText));
+}
+taskPromptTextEl.addEventListener("keydown", () =>
+  updateResult(event.target.value)
+);
 
 // ResetPage function
 function resetPage() {
@@ -24,40 +28,28 @@ function resetPage() {
   taskPromptTextEl.value = "";
 }
 
-// ====================================================================================
+// ==================================================================================
 // Update Result
 
-const updateResult = () => {
-  // get the value of the select
-  const taskTypeValue = taskType.value;
-  // console.log(taskTypeValue);
-  // update the result
-  switch (taskTypeValue) {
-    case "Pomodoro":
-      generateTaskOption("Pomodoro");
-      break;
-    case "ZTD":
-      generateTaskOption("ZTD");
-      break;
-    case "Matrix":
-      generateTaskOption("Matrix");
-      break;
-    case userInput:
-      generateUserOption(userInput);
-    default:
-      generateTaskOption();
-      break;
+function updateResult(result) {
+  if (event.type === "keydown") {
+    // User input
+    if (event.key === "Enter") {
+      generateUserOption(result);
+      taskPromptTextEl.value = "";
+    }
+  } else {
+    generateTaskOption(result);
   }
-};
+}
 
+// ====================================================================================
 // inner.html Replacement | Update Results
-taskType.addEventListener("change", () => updateResult());
-
-function generateTaskOption(type = "Pomodoro") {
+function generateTaskOption(type) {
   taskPromptResultEl.innerHTML = `
-    <!-- start: second section-->
-        <div class="p-6">
-          <p class="text-4xl">Here's your plan based on ${type} technique</p>
+  <!-- start: second section-->
+  <div class="p-6">
+  <p class="text-4xl">Here's your plan based on ${type} technique</p>
         </div>
         <!-- end: second section-->
 
@@ -214,64 +206,3 @@ function generateUserOption(type) {
         <!-- end: 3rd section -->
     `;
 }
-
-// ====================================================================================
-// Text-Input
-
-// Text prompt
-taskPromptTextEl.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    // get a value
-    // console.log();
-    const userInput = taskPromptTextEl.value;
-    //@TODO: 1. make this show in the web view
-    console.log(userInput);
-    //    set a value
-    taskPromptTextEl.value = "";
-
-    generateUserOption(userInput);
-  }
-});
-
-// ====================================================================================
-// Button-Input
-
-// Pomodoro
-pomoBtn.addEventListener("click", function () {
-  generateTaskOption("Pomodoro");
-});
-
-// Matrix
-matrixBtn.addEventListener("click", function () {
-  generateTaskOption("Matrix");
-});
-
-// ZTD
-ztdBtn.addEventListener("click", function () {
-  generateTaskOption();
-});
-
-// GTD
-gtdBtn.addEventListener("click", function () {
-  generateTaskOption("GTD");
-});
-
-// ====================================================================================
-// task switcher | Old COde
-
-// taskType.addEventListener("change", function (event) {
-//   switch (event.target.value) {
-//     case "Pomodoro":
-//       generateTaskOption("Pomodoro");
-//       break;
-//     case "ZTD":
-//       generateTaskOption("ZTD");
-//       break;
-//     case "Matrix":
-//       generateTaskOption("Matrix");
-//       break;
-//     default:
-//       generateTaskOption();
-//       break;
-//   }
-// });
